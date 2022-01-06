@@ -1,0 +1,2 @@
+INSERT INTO moneda ( curreny_Name , origin_Currency , exchange_Currency,  exchange_Rate) VALUES ('Soles','pen','usd',3.89);
+INSERT INTO moneda ( curreny_Name , origin_Currency , exchange_Currency,  exchange_Rate) VALUES ('Dolares','usd','pen',3.99);
