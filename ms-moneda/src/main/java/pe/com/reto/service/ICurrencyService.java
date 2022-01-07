@@ -1,8 +1,7 @@
 package pe.com.reto.service;
 
-import java.math.BigDecimal;
-
 import pe.com.reto.dto.response.CurrencyResponse;
+import pe.com.reto.dto.response.ExchangeCurrencyResponse;
 import pe.com.reto.model.CurrencyEntity;
 import rx.Single;
 
@@ -12,5 +11,5 @@ public interface ICurrencyService {
 
 	Single<CurrencyResponse> findById(Long id);
 	
-	Single<BigDecimal> getidLocation(String monedaOrigen, String monedaDestino);
+	Single<ExchangeCurrencyResponse> getidLocation(String monedaOrigen, String monedaDestino,  Long monto);
 }

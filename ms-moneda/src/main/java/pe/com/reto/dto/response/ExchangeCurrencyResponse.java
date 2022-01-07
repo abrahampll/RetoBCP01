@@ -7,17 +7,21 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CurrencyResponse {
+public class ExchangeCurrencyResponse {
 	
-	
-	private Long idMoneda;
-	private String nombreMoneda;
-	private String tipoMoneda;
-	private BigDecimal monedaCambio;
+
+	private String monedaOrigen;
+	private String monedaDestino;
 	private BigDecimal monto;
+	private BigDecimal tipoCambio;
+	
+
+	
+
 
 }

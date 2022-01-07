@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import pe.com.reto.dto.response.BaseWebResponse;
 import pe.com.reto.dto.response.CurrencyResponse;
+import pe.com.reto.dto.response.ExchangeCurrencyResponse;
 import pe.com.reto.service.ICurrencyService;
 import rx.Single;
 import rx.schedulers.Schedulers;
@@ -23,21 +23,23 @@ public class CurrencyController {
 	  private final ICurrencyService currencyService;
 	
 	@GetMapping("/{id}")
-	public Single<ResponseEntity<BaseWebResponse<CurrencyResponse>>>  retorno(@PathVariable Long id){
+	public Single<ResponseEntity<CurrencyResponse>>  retorno(@PathVariable Long id){
 		log.info("mensaje de prueba : {}", id);
 		
 		return currencyService.findById(id)
 				.subscribeOn(Schedulers.io())
-				.map(book -> ResponseEntity.ok(BaseWebResponse.successWithData(book)));
+				.map(book -> ResponseEntity.ok(book));
 	}
 	
 	@GetMapping("/tipoCambio")
-	public Single<ResponseEntity<String>> prueba(@RequestParam String monedaOrigen,
-			@RequestParam String monedaDestino ){
+	public Single<ResponseEntity<ExchangeCurrencyResponse>> prueba(@RequestParam String monedaOrigen,
+			@RequestParam String monedaDestino, @RequestParam Long monto ){
 		
 		log.info("mensaje de prueba : {}", monedaOrigen);
 		
-		return null;
+		return currencyService.getidLocation(monedaOrigen, monedaDestino, monto)
+				.subscribeOn(Schedulers.io())
+				.map(res -> ResponseEntity.ok(res));
 	}
 	
 		
